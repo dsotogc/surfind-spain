@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Roles;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -12,10 +13,12 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        $admin = User::create([
             'name' => 'Admin User',
             'email' => 'admin@surfind.es',
             'password' => bcrypt('admin1234'),
         ]);
+
+        $admin->assignRole(Roles::ADMIN->value);
     }
 }
