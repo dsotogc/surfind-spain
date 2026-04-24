@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->primary(['user_id', 'beach_id']); // Clave Primaria Compuesta
+            $table->index('beach_id');
         });
     }
 

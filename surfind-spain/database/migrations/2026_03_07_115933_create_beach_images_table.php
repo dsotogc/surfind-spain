@@ -23,6 +23,9 @@ return new class extends Migration
             $table->enum('source_type', ['upload', 'url']);
             $table->string('path')->nullable();
             $table->text('external_url')->nullable();
+            $table->boolean('is_cover')->default(false);
+            $table->unsignedSmallInteger('sort_order')->default(0);
+            $table->string('alt_text')->nullable();
             $table->timestamps();
         });
     }

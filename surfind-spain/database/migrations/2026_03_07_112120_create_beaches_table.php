@@ -18,15 +18,25 @@ return new class extends Migration
             $table->foreignId('location_id')
                 ->constrained()
                 ->onDelete('cascade');
+            $table->foreignId('created_by')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
+            $table->string('short_description', 255)->nullable();
             $table->text('description')->nullable();
             $table->enum('difficulty', [
                 'beginner',
                 'intermediate',
                 'advanced',
             ])->nullable();
-            $table->string('cover_image')->nullable();
-            $table->decimal('lat');
-            $table->decimal('long');
+            $table->enum('status', [
+                'draft',
+                'published',
+                'archived',
+            ])->default('draft');
+            $table->timestamp('published_at')->nullable();
+            $table->decimal('latitude', 10, 7);
+            $table->decimal('longitude', 10, 7);
             $table->timestamps();
         });
     }

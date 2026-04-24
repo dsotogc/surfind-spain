@@ -20,6 +20,8 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->timestamps();
+
+            $table->unique(['beach_id', 'amenity_id']);
         });
     }
 
