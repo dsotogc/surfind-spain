@@ -6,6 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class BeachImage extends Model
 {
+    protected $fillable = [
+        'beach_id',
+        'user_id',
+        'source_type',
+        'path',
+        'external_url',
+        'is_cover',
+        'sort_order',
+        'alt_text',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_cover' => 'boolean',
+            'sort_order' => 'integer',
+        ];
+    }
+
     public function beach()
     {
         return $this->belongsTo(Beach::class);
@@ -13,6 +32,6 @@ class BeachImage extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }
