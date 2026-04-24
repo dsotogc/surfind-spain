@@ -18,18 +18,30 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-
         foreach (Permissions::cases() as $permission) {
-            Permission::create(['name' => $permission->value]);
+            Permission::firstOrCreate([
+                'name' => $permission->value,
+                'guard_name' => 'web',
+            ]);
         }
 
-        $userRole = Role::create(['name' => Roles::USER->value]);
-        $userRole->givePermissionTo([Permissions::VIEW_BEACHES->value,
-                                     Permissions::CREATE_REVIEWS->value,
-                                     Permissions::EDIT_OWN_REVIEWS->value,
-                                     Permissions::DELETE_OWN_REVIEWS->value]);
+        $userRole = Role::firstOrCreate([
+            'name' => Roles::USER->value,
+            'guard_name' => 'web',
+        ]);
 
-        $adminRole = Role::create(['name' => Roles::ADMIN->value]);
-        $adminRole->givePermissionTo([Permission::all()]);
+        $userRole->syncPermissions([
+            Permissions::VIEW_BEACHES->value,
+            Permissions::CREATE_REVIEWS->value,
+            Permissions::EDIT_OWN_REVIEWS->value,
+            Permissions::DELETE_OWN_REVIEWS->value,
+        ]);
+
+        $adminRole = Role::firstOrCreate([
+            'name' => Roles::ADMIN->value,
+            'guard_name' => 'web',
+        ]);
+
+        $adminRole->syncPermissions(Permission::all());
     }
 }
