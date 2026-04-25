@@ -11,14 +11,36 @@
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
+                <flux:sidebar.group :heading="__('Panel')" class="grid">
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
+
+                @canany(['view beaches', 'manage users'])
+                    <flux:sidebar.group :heading="__('Administracion')" class="grid">
+                        @can('view beaches')
+                            <flux:sidebar.item icon="map" :href="route('admin.beaches.index')" :current="request()->routeIs('admin.beaches.*')" wire:navigate>
+                                {{ __('Playas') }}
+                            </flux:sidebar.item>
+                        @endcan
+
+                        @can('manage users')
+                            <flux:sidebar.item icon="users" :href="route('admin.users.index')" :current="request()->routeIs('admin.users.*')" wire:navigate>
+                                {{ __('Usuarios') }}
+                            </flux:sidebar.item>
+                        @endcan
+                    </flux:sidebar.group>
+                @endcanany
             </flux:sidebar.nav>
 
             <flux:spacer />
+
+            <flux:sidebar.nav>
+                <flux:sidebar.item icon="globe-alt" :href="route('home')" wire:navigate>
+                    {{ __('Volver al sitio') }}
+                </flux:sidebar.item>
+            </flux:sidebar.nav>
 
             <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
         </flux:sidebar>
