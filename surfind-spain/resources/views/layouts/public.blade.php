@@ -159,7 +159,7 @@
                         <a href="{{ route('home') }}" class="group text-2xl font-black uppercase tracking-[0.28em] text-[#002833] transition duration-300 hover:tracking-[0.34em] hover:text-[#266C80]" wire:navigate>
                             Surfind Spain
                         </a>
-                        <p class="mt-2 text-xs italic text-[#266C80]/70">Desarrollado por David Soto Garcia</p>
+                        <p class="mt-2 text-xs italic text-[#266C80]/70">Desarrollado por David Soto García</p>
                     </div>
 
                     <p class="text-[#266C80]/80 md:justify-self-end md:text-right">Proyecto CFGS Desarrollo de Aplicaciones Web</p>
