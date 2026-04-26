@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class BeachImage extends Model
 {
@@ -33,5 +34,12 @@ class BeachImage extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function url(): ?string
+    {
+        return $this->source_type === 'upload'
+            ? ($this->path ? Storage::disk('public')->url($this->path) : null)
+            : $this->external_url;
     }
 }
