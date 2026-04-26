@@ -11,7 +11,7 @@ Route::view('mapa', 'map')->name('map');
 Route::view('comunidad', 'community.index')->name('community.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('role:admin');
 
     Route::prefix('admin')->as('admin.')->middleware('role:admin')->group(function () {
         Route::group(['prefix' => 'playas', 'as' => 'beaches.', 'controller' => AdminBeachController::class], function () {
@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/{user}', 'show')->name('show')->middleware('permission:manage users');
             Route::get('/{user}/edit', 'edit')->name('edit')->middleware('permission:manage users');
             Route::put('/{user}/edit', 'update')->name('update')->middleware('permission:manage users');
+            Route::patch('/{user}/restore', 'restore')->name('restore')->middleware('permission:manage users');
             Route::delete('/{user}/destroy', 'destroy')->name('destroy')->middleware('permission:manage users');
         });
     });
