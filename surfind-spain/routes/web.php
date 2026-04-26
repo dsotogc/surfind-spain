@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\BeachController as AdminBeachController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\BeachController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::view('playas', 'beaches.index')->name('beaches.index');
+Route::get('playas', [BeachController::class, 'index'])->name('beaches.index');
+Route::get('playas/{beach:slug}', [BeachController::class, 'show'])->name('beaches.show');
 Route::view('mapa', 'map')->name('map');
 Route::view('comunidad', 'community.index')->name('community.index');
 
