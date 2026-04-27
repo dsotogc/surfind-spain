@@ -65,7 +65,10 @@
 
                     <tbody class="divide-y divide-zinc-200 dark:divide-white/10">
                         @forelse ($beaches as $beach)
-                            @php($coverUrl = $beach->coverImage?->url())
+                            @php
+                                $coverUrl = $beach->coverImage?->url();
+                            @endphp
+
                             <tr class="text-zinc-700 transition hover:bg-[#85C3D4]/5 dark:text-zinc-300 dark:hover:bg-[#85C3D4]/5">
                                 <td class="px-4 py-4">
                                     <div class="flex min-w-0 items-center gap-3">

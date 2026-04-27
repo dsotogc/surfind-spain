@@ -1,5 +1,7 @@
 <x-layouts::app :title="$beach->name">
-    @php($coverUrl = $beach->coverImage?->url())
+    @php
+        $coverUrl = $beach->coverImage?->url();
+    @endphp
 
     <div class="flex h-full w-full max-w-none flex-1 flex-col gap-6 rounded-xl">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -160,7 +162,10 @@
 
                     <div class="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                         @forelse ($beach->images as $image)
-                            @php($imageUrl = $image->url())
+                            @php
+                                $imageUrl = $image->url();
+                            @endphp
+
                             <div class="overflow-hidden rounded-2xl border border-zinc-300 dark:border-zinc-700">
                                 @if ($imageUrl)
                                     <img src="{{ $imageUrl }}" alt="{{ $image->alt_text ?? $beach->name }}" class="h-36 w-full object-cover">
