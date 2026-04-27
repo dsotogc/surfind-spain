@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\BeachController as AdminBeachController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BeachController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +15,10 @@ Route::view('mapa', 'map')->name('map');
 Route::view('comunidad', 'community.index')->name('community.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('playas/{beach:slug}/guardar', [FavoriteController::class, 'store'])->name('beaches.favorites.store');
+    Route::delete('playas/{beach:slug}/guardar', [FavoriteController::class, 'destroy'])->name('beaches.favorites.destroy');
+    Route::post('playas/{beach:slug}/comentarios', [CommentController::class, 'store'])->name('beaches.comments.store');
+
     Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('role:admin');
 
     Route::prefix('admin')->as('admin.')->middleware('role:admin')->group(function () {

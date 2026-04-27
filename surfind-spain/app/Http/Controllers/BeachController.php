@@ -28,7 +28,7 @@ class BeachController extends Controller
         $selectedAmenities = collect($filters['amenities'] ?? [])->map(fn ($id) => (int) $id)->all();
         $sort = $filters['sort'] ?? 'recent';
 
-        $beaches = Beach::query()
+        $beachesQuery = Beach::query()
             ->where('status', 'published')
             ->with(['location', 'coverImage', 'amenities'])
             ->withCount([
@@ -53,7 +53,15 @@ class BeachController extends Controller
             ->when($sort === 'comments', fn ($query) => $query->orderByDesc('published_comments_count'))
             ->when($sort === 'favorites', fn ($query) => $query->orderByDesc('favorited_by_users_count'))
             ->when($sort === 'name', fn ($query) => $query->orderBy('name'))
-            ->when($sort === 'recent', fn ($query) => $query->latest('published_at'))
+            ->when($sort === 'recent', fn ($query) => $query->latest('published_at'));
+
+        if ($request->user()) {
+            $beachesQuery->withExists([
+                'favoritedByUsers as is_favorited' => fn ($query) => $query->whereKey($request->user()->id),
+            ]);
+        }
+
+        $beaches = $beachesQuery
             ->paginate(9)
             ->withQueryString();
 
@@ -81,9 +89,21 @@ class BeachController extends Controller
                 'images',
             ]);
 
+        $comments = $beach->comments()
+            ->where('published', true)
+            ->with('user')
+            ->latest()
+            ->paginate(6, ['*'], 'comments_page')
+            ->fragment('comentarios');
+
+        $isFavorited = auth()->check()
+            && auth()->user()->favoriteBeaches()->whereKey($beach->id)->exists();
+
         return view('beaches.show', [
             'beach' => $beach,
+            'comments' => $comments,
             'difficulties' => $this->difficulties(),
+            'isFavorited' => $isFavorited,
         ]);
     }
 

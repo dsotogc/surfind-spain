@@ -1,5 +1,7 @@
 <x-layouts::public :title="$beach->name">
-    @php($coverUrl = $beach->coverImage?->url())
+    @php
+        $coverUrl = $beach->coverImage?->url();
+    @endphp
 
     <article class="relative z-10 mx-auto max-w-7xl px-5 pb-16 pt-8 sm:px-8 lg:px-10">
         <div class="mb-6">
@@ -27,6 +29,32 @@
                     </div>
                 @endif
 
+                <div class="absolute right-5 top-5 z-10 md:right-7 md:top-7">
+                    @auth
+                        <form method="POST" action="{{ $isFavorited ? route('beaches.favorites.destroy', $beach) : route('beaches.favorites.store', $beach) }}">
+                            @csrf
+
+                            @if ($isFavorited)
+                                @method('DELETE')
+                            @endif
+
+                            <button type="submit" aria-label="{{ $isFavorited ? 'Quitar de guardadas' : 'Guardar playa' }}" class="group inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/90 px-4 py-2.5 text-sm font-black text-[#002833] shadow-xl shadow-[#002833]/20 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus:outline-none focus:ring-4 focus:ring-white/40">
+                                <svg class="size-5 transition group-hover:scale-110 {{ $isFavorited ? 'text-rose-500' : 'text-[#002833]' }}" viewBox="0 0 24 24" fill="{{ $isFavorited ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733C11.285 4.876 9.623 3.75 7.688 3.75 5.098 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                </svg>
+                                <span>{{ $beach->favorited_by_users_count }}</span>
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" aria-label="Guardar playa" class="group inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/90 px-4 py-2.5 text-sm font-black text-[#002833] shadow-xl shadow-[#002833]/20 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus:outline-none focus:ring-4 focus:ring-white/40">
+                            <svg class="size-5 transition group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733C11.285 4.876 9.623 3.75 7.688 3.75 5.098 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                            </svg>
+                            <span>{{ $beach->favorited_by_users_count }}</span>
+                        </a>
+                    @endauth
+                </div>
+
                 <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                     <div class="flex flex-wrap gap-2">
                         <span class="rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-[#114857] shadow-sm backdrop-blur">{{ $beach->location?->name }}</span>
@@ -53,29 +81,14 @@
                 </section>
 
                 <section class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/75 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
-                    <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-                        <div>
-                            <h2 class="text-2xl font-black text-[#002833]">Servicios</h2>
-                            <p class="mt-2 text-sm leading-6 text-[#266C80]">Servicios y caracteristicas disponibles en esta playa.</p>
-                        </div>
-                    </div>
-
-                    <div class="mt-5 flex flex-wrap gap-2">
-                        @forelse ($beach->amenities as $amenity)
-                            <span class="rounded-full border border-[#85C3D4]/45 bg-[#85C3D4]/12 px-4 py-2 text-sm font-bold text-[#114857]">{{ $amenity->name }}</span>
-                        @empty
-                            <span class="text-sm font-semibold text-[#5097AB]">Aun no hay servicios indicados.</span>
-                        @endforelse
-                    </div>
-                </section>
-
-                <section class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/75 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
                     <h2 class="text-2xl font-black text-[#002833]">Galeria</h2>
-                    <p class="mt-2 text-sm leading-6 text-[#266C80]">Imagenes asociadas a la playa. La portada aparece marcada desde el panel de administracion.</p>
 
                     <div class="mt-5 grid gap-4 sm:grid-cols-2">
                         @forelse ($beach->images as $image)
-                            @php($imageUrl = $image->url())
+                            @php
+                                $imageUrl = $image->url();
+                            @endphp
+
                             <div class="group overflow-hidden rounded-3xl border border-[#85C3D4]/40 bg-white shadow-sm shadow-[#5097AB]/10">
                                 @if ($imageUrl)
                                     <img src="{{ $imageUrl }}" alt="{{ $image->alt_text ?? $beach->name }}" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
@@ -93,63 +106,78 @@
                     </div>
                 </section>
 
-                <section id="comentarios" class="rounded-[2rem] border border-dashed border-[#5097AB]/60 bg-white/60 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
-                    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <section id="comentarios" class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/70 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p class="text-sm font-bold uppercase tracking-[0.28em] text-[#5097AB]">Comunidad</p>
                             <h2 class="mt-2 text-2xl font-black text-[#002833]">Comentarios</h2>
-                            <p class="mt-3 max-w-2xl text-sm leading-6 text-[#266C80]">Aqui se mostraran los comentarios publicados de esta playa y, mas adelante, el formulario para participar si el usuario ha iniciado sesion.</p>
                         </div>
 
-                        <div class="rounded-full bg-[#002833] px-4 py-2 text-sm font-bold text-white">
+                        <span class="text-sm font-bold text-[#5097AB]">
                             {{ $beach->published_comments_count }} {{ $beach->published_comments_count === 1 ? 'comentario' : 'comentarios' }}
-                        </div>
+                        </span>
                     </div>
 
-                    <div class="mt-6 rounded-3xl border border-[#85C3D4]/35 bg-[#F7FBFC]/80 p-5 text-sm leading-6 text-[#266C80]">
-                        Proxima fase: listado de comentarios, alta de comentarios para usuarios autenticados y acciones de moderacion mediante permisos.
+                    @auth
+                        <form method="POST" action="{{ route('beaches.comments.store', $beach) }}" class="mt-6 rounded-[1.5rem] bg-[#DCEFF4]/45 p-4">
+                            @csrf
+
+                            <label for="content" class="sr-only">Publicar comentario</label>
+                            <textarea id="content" name="content" rows="4" maxlength="1000" placeholder="Comparte algo util sobre esta playa..." class="block w-full resize-none rounded-[1.25rem] bg-white px-4 py-3 text-sm leading-6 text-[#002833] shadow-sm outline-none transition placeholder:text-[#5097AB]/70 focus:ring-4 focus:ring-[#85C3D4]/30">{{ old('content') }}</textarea>
+
+                            @error('content')
+                                <p class="mt-2 text-sm font-semibold text-red-700">{{ $message }}</p>
+                            @enderror
+
+                            <div class="mt-3 flex justify-end">
+                                <button type="submit" class="rounded-full bg-[#002833] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#114857]/15 transition hover:-translate-y-0.5 hover:bg-[#114857]">Publicar</button>
+                            </div>
+                        </form>
+                    @else
+                        <div class="mt-6 rounded-[1.5rem] bg-[#DCEFF4]/45 p-4 text-sm font-semibold text-[#266C80]">
+                            <a href="{{ route('login') }}" class="font-black text-[#002833] transition hover:text-[#266C80]">Inicia sesion</a> para comentar esta playa.
+                        </div>
+                    @endauth
+
+                    <div class="mt-7 space-y-5">
+                        @forelse ($comments as $comment)
+                            <article class="flex gap-4">
+                                <div class="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#002833] text-sm font-black text-white shadow-md shadow-[#114857]/15">
+                                    {{ $comment->user->initials() }}
+                                </div>
+
+                                <div class="min-w-0 flex-1 border-b border-[#85C3D4]/25 pb-5 last:border-b-0 last:pb-0">
+                                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                        <h3 class="font-bold text-[#002833]">{{ $comment->user->name }}</h3>
+                                        <time datetime="{{ $comment->created_at->toIso8601String() }}" class="text-xs font-semibold text-[#5097AB]">{{ $comment->created_at->diffForHumans() }}</time>
+                                    </div>
+
+                                    <p class="mt-2 whitespace-pre-line text-sm leading-7 text-[#266C80]">{{ $comment->content }}</p>
+                                </div>
+                            </article>
+                        @empty
+                            <p class="rounded-[1.5rem] bg-white/70 p-5 text-sm font-semibold leading-6 text-[#266C80] shadow-sm shadow-[#114857]/5">Todavia no hay comentarios. Se la primera persona en compartir algo util sobre esta playa.</p>
+                        @endforelse
                     </div>
+
+                    @if ($comments->hasPages())
+                        <div class="mt-6 rounded-[1.5rem] bg-white/70 px-4 py-3 shadow-sm shadow-[#114857]/5">
+                            {{ $comments->links() }}
+                        </div>
+                    @endif
                 </section>
             </div>
 
             <aside class="space-y-5 xl:sticky xl:top-6 xl:self-start">
                 <section class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/75 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur">
-                    <h2 class="text-lg font-black text-[#002833]">Datos rapidos</h2>
+                    <h2 class="text-lg font-black text-[#002833]">Servicios</h2>
 
-                    <dl class="mt-5 space-y-4 text-sm">
-                        <div>
-                            <dt class="font-bold uppercase tracking-[0.2em] text-[#5097AB]">Provincia</dt>
-                            <dd class="mt-1 font-semibold text-[#002833]">{{ $beach->location?->name }}</dd>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <dt class="font-bold uppercase tracking-[0.2em] text-[#5097AB]">Latitud</dt>
-                                <dd class="mt-1 font-semibold text-[#002833]">{{ $beach->latitude }}</dd>
-                            </div>
-
-                            <div>
-                                <dt class="font-bold uppercase tracking-[0.2em] text-[#5097AB]">Longitud</dt>
-                                <dd class="mt-1 font-semibold text-[#002833]">{{ $beach->longitude }}</dd>
-                            </div>
-                        </div>
-
-                        <div>
-                            <dt class="font-bold uppercase tracking-[0.2em] text-[#5097AB]">Publicada</dt>
-                            <dd class="mt-1 font-semibold text-[#002833]">{{ $beach->published_at?->format('d/m/Y') }}</dd>
-                        </div>
-                    </dl>
-                </section>
-
-                <section class="grid grid-cols-2 gap-3">
-                    <div class="rounded-3xl border border-[#85C3D4]/40 bg-white/75 p-5 text-center shadow-sm shadow-[#5097AB]/10 backdrop-blur">
-                        <div class="text-3xl font-black text-[#114857]">{{ $beach->published_comments_count }}</div>
-                        <div class="mt-1 text-xs font-bold uppercase tracking-[0.2em] text-[#5097AB]">Comentarios</div>
-                    </div>
-
-                    <div class="rounded-3xl border border-[#85C3D4]/40 bg-white/75 p-5 text-center shadow-sm shadow-[#5097AB]/10 backdrop-blur">
-                        <div class="text-3xl font-black text-[#114857]">{{ $beach->favorited_by_users_count }}</div>
-                        <div class="mt-1 text-xs font-bold uppercase tracking-[0.2em] text-[#5097AB]">Guardadas</div>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        @forelse ($beach->amenities as $amenity)
+                            <span class="rounded-full bg-[#85C3D4]/12 px-4 py-2 text-sm font-bold text-[#114857] shadow-sm">{{ $amenity->name }}</span>
+                        @empty
+                            <span class="text-sm font-semibold text-[#5097AB]">Aun no hay servicios indicados.</span>
+                        @endforelse
                     </div>
                 </section>
 
