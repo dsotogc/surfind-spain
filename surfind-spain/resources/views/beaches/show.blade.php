@@ -181,10 +181,10 @@
                     </div>
                 </section>
 
-                <a href="{{ route('map') }}" class="block rounded-[2rem] bg-[#002833] p-6 text-white shadow-xl shadow-[#114857]/15 transition hover:-translate-y-0.5 hover:bg-[#114857]" wire:navigate>
+                <a href="{{ route('map', ['playa' => $beach->slug]) }}" class="block rounded-[2rem] bg-[#002833] p-6 text-white shadow-xl shadow-[#114857]/15 transition hover:-translate-y-0.5 hover:bg-[#114857]" wire:navigate>
                     <span class="text-sm font-bold uppercase tracking-[0.28em] text-[#85C3D4]">Mapa</span>
                     <span class="mt-2 block text-xl font-black">Ver ubicacion</span>
-                    <span class="mt-3 block text-sm leading-6 text-white/75">Cuando el mapa interactivo este disponible, esta accion llevara directamente a la playa.</span>
+                    <span class="mt-3 block text-sm leading-6 text-white/75">Abre el mapa centrado en esta playa para ver su posicion en la costa.</span>
                 </a>
             </aside>
         </div>

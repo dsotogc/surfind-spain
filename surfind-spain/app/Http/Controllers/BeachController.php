@@ -107,6 +107,42 @@ class BeachController extends Controller
         ]);
     }
 
+    public function map(Request $request): View
+    {
+        $beaches = Beach::query()
+            ->where('status', 'published')
+            ->with(['location', 'coverImage'])
+            ->withCount([
+                'comments as published_comments_count' => fn ($query) => $query->where('published', true),
+                'favoritedByUsers',
+            ])
+            ->orderBy('name')
+            ->get();
+
+        $difficulties = $this->difficulties();
+
+        $mapBeaches = $beaches->map(fn (Beach $beach) => [
+            'name' => $beach->name,
+            'slug' => $beach->slug,
+            'location' => $beach->location?->name,
+            'difficulty' => $beach->difficulty ? $difficulties[$beach->difficulty] : null,
+            'description' => $beach->short_description,
+            'latitude' => (float) $beach->latitude,
+            'longitude' => (float) $beach->longitude,
+            'url' => route('beaches.show', $beach),
+            'cover_url' => $beach->coverImage?->url(),
+            'comments_count' => $beach->published_comments_count,
+            'favorites_count' => $beach->favorited_by_users_count,
+        ])->values();
+
+        return view('map', [
+            'beaches' => $beaches,
+            'mapBeaches' => $mapBeaches,
+            'selectedBeachSlug' => $request->query('playa'),
+            'difficulties' => $difficulties,
+        ]);
+    }
+
     private function difficulties(): array
     {
         return [
