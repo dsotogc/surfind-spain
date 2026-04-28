@@ -1,5 +1,9 @@
 {
     "$schema": "https://schema.railpack.com",
+    "buildAptPackages": [
+        "bison",
+        "re2c"
+    ],
     "packages": {
         "php": "8.4",
         "node": "22"
