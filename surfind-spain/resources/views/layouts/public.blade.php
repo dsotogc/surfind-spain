@@ -4,6 +4,8 @@
         ['label' => 'Mapa', 'route' => 'map', 'active' => 'map'],
         ['label' => 'Comunidad', 'route' => 'community.index', 'active' => 'community.*'],
     ];
+
+    $isHome = request()->routeIs('home');
 @endphp
 
 <!DOCTYPE html>
@@ -13,7 +15,7 @@
     </head>
     <body class="min-h-screen bg-[#F7FBFC] text-[#002833] antialiased">
         <div class="min-h-screen overflow-hidden bg-[linear-gradient(180deg,_#F7FBFC_0%,_#DCEFF4_48%,_#F7FBFC_100%)]">
-            <header class="relative z-20">
+            <header class="{{ $isHome ? 'fixed inset-x-0 top-0 z-50' : 'relative z-20' }}">
                 <div class="relative z-30 mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-5 py-6 sm:px-8 lg:px-10">
                     <a href="{{ route('home') }}" class="group inline-flex items-center rounded-full border border-[#85C3D4]/55 bg-white/55 p-1 text-[#002833] shadow-sm shadow-[#5097AB]/20 backdrop-blur transition-all duration-500 hover:bg-white/80 hover:pr-6 hover:shadow-lg hover:shadow-[#114857]/10" wire:navigate aria-label="Surfind Spain">
                         <span class="grid size-14 place-items-center rounded-full bg-white text-[#002833] shadow-sm shadow-[#5097AB]/20 transition duration-500 group-hover:scale-95 group-hover:bg-[#002833] group-hover:text-white md:size-16">
@@ -92,7 +94,7 @@
                             </details>
                         @else
                             <div class="hidden items-center gap-2 lg:flex">
-                                <a href="{{ route('login') }}" class="rounded-full px-4 py-2.5 text-[#114857] transition hover:bg-white/70" wire:navigate>
+                                <a href="{{ route('login') }}" class="rounded-full border border-[#85C3D4]/45 bg-white/65 px-4 py-2.5 text-[#114857] shadow-sm shadow-[#5097AB]/10 backdrop-blur transition hover:bg-white/85 hover:text-[#002833]" wire:navigate>
                                 Entrar
                                 </a>
                                 @if (Route::has('register'))
