@@ -5,7 +5,7 @@
 
     <section class="surfind-home-hero relative isolate grid min-h-screen place-items-center overflow-hidden px-5 py-32 text-center sm:px-8 lg:px-10">
         <div class="surfind-home-video-slot" aria-hidden="true">
-            <video class="surfind-home-video" autoplay muted loop playsinline aria-hidden="true">
+            <video class="surfind-home-video" autoplay muted loop playsinline poster="/videos/home-surf-poster.webp" aria-hidden="true">
                 <source src="/videos/home-surf.mp4" type="video/mp4">
             </video>
         </div>
