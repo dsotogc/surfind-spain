@@ -76,7 +76,7 @@
                                 name="password"
                                 label="Nueva contraseña"
                                 type="password"
-                                minlength="8"
+                                minlength="6"
                                 autocomplete="new-password"
                                 placeholder="Nueva contraseña"
                                 viewable
@@ -86,7 +86,7 @@
                                 name="password_confirmation"
                                 label="Confirmar contraseña"
                                 type="password"
-                                minlength="8"
+                                minlength="6"
                                 autocomplete="new-password"
                                 placeholder="Repite la nueva contraseña"
                                 viewable

@@ -3,7 +3,6 @@
 namespace App\Concerns;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 trait PasswordValidationRules
 {
@@ -14,7 +13,7 @@ trait PasswordValidationRules
      */
     protected function passwordRules(): array
     {
-        return ['required', 'string', Password::default(), 'confirmed'];
+        return ['required', 'string', 'min:6', 'confirmed'];
     }
 
     /**

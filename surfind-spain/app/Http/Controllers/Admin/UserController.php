@@ -10,7 +10,6 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -103,7 +102,7 @@ class UserController extends Controller
         $validated = $request->validate([
             ...$this->profileRules($user->id),
             'role' => ['required', new Enum(Roles::class)],
-            'password' => ['nullable', 'string', Password::default(), 'confirmed'],
+            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
         ]);
 
         $user->fill([

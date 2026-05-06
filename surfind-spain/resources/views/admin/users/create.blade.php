@@ -53,7 +53,7 @@
                         label="Contraseña"
                         type="password"
                         required
-                        minlength="8"
+                        minlength="6"
                         autocomplete="new-password"
                         placeholder="Contraseña"
                         viewable
@@ -64,7 +64,7 @@
                         label="Confirmar contraseña"
                         type="password"
                         required
-                        minlength="8"
+                        minlength="6"
                         autocomplete="new-password"
                         placeholder="Repite la contraseña"
                         viewable
