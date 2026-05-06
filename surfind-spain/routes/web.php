@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BeachController as AdminBeachController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BeachController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -12,7 +13,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('playas', [BeachController::class, 'index'])->name('beaches.index');
 Route::get('playas/{beach:slug}', [BeachController::class, 'show'])->name('beaches.show');
 Route::get('mapa', [BeachController::class, 'map'])->name('map');
-Route::view('comunidad', 'community.index')->name('community.index');
+Route::get('comunidad', [CommunityController::class, 'index'])->name('community.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('playas/{beach:slug}/guardar', [FavoriteController::class, 'store'])->name('beaches.favorites.store');
