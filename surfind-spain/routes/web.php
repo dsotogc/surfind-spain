@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BeachController as AdminBeachController;
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BeachController;
 use App\Http\Controllers\CommentController;
@@ -21,7 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('playas/{beach:slug}/guardar', [FavoriteController::class, 'destroy'])->name('beaches.favorites.destroy');
     Route::post('playas/{beach:slug}/comentarios', [CommentController::class, 'store'])->name('beaches.comments.store');
 
-    Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('role:admin');
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard')->middleware('role:admin');
 
     Route::prefix('admin')->as('admin.')->middleware('role:admin')->group(function () {
         Route::group(['prefix' => 'playas', 'as' => 'beaches.', 'controller' => AdminBeachController::class], function () {
