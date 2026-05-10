@@ -70,7 +70,7 @@
         <section class="border-t border-zinc-300 pt-8 dark:border-zinc-700">
             <div class="mb-5">
                 <h2 class="text-base font-semibold text-[#002833] dark:text-white">Imagen de portada</h2>
-                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Puedes subir una imagen propia o usar una URL externa. Si cambias la portada, la anterior pasa a la galeria.</p>
+                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Puedes subir una imagen propia o usar una URL externa como portada de la playa.</p>
             </div>
 
             <div class="grid gap-6 lg:grid-cols-[260px_1fr]">

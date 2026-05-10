@@ -32,7 +32,7 @@ class BeachController extends Controller
 
         $beaches = Beach::query()
             ->with(['location', 'coverImage', 'creator'])
-            ->withCount(['comments', 'favoritedByUsers', 'images'])
+            ->withCount(['comments', 'favoritedByUsers'])
             ->when($search, function ($query, string $search) {
                 $query->where(function ($query) use ($search) {
                     $query
@@ -86,8 +86,8 @@ class BeachController extends Controller
 
     public function show(Beach $beach): View
     {
-        $beach->load(['location', 'coverImage', 'creator', 'amenities', 'images.user'])
-            ->loadCount(['comments', 'favoritedByUsers', 'images']);
+        $beach->load(['location', 'coverImage', 'creator', 'amenities'])
+            ->loadCount(['comments', 'favoritedByUsers']);
 
         return view('admin.beaches.show', compact('beach'));
     }

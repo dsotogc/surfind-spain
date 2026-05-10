@@ -80,32 +80,6 @@
                     <p class="mt-5 whitespace-pre-line text-base leading-8 text-[#266C80]">{{ $beach->description ?: 'Esta playa aun no tiene una descripcion completa.' }}</p>
                 </section>
 
-                <section class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/75 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
-                    <h2 class="text-2xl font-black text-[#002833]">Galeria</h2>
-
-                    <div class="mt-5 grid gap-4 sm:grid-cols-2">
-                        @forelse ($beach->images as $image)
-                            @php
-                                $imageUrl = $image->url();
-                            @endphp
-
-                            <div class="group overflow-hidden rounded-3xl border border-[#85C3D4]/40 bg-white shadow-sm shadow-[#5097AB]/10">
-                                @if ($imageUrl)
-                                    <img src="{{ $imageUrl }}" alt="{{ $image->alt_text ?? $beach->name }}" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
-                                @else
-                                    <div class="grid h-52 place-items-center bg-[#85C3D4]/12 text-sm font-semibold text-[#5097AB]">Sin imagen</div>
-                                @endif
-
-                                @if ($image->is_cover)
-                                    <div class="px-4 py-3 text-xs font-bold uppercase tracking-[0.22em] text-[#114857]">Portada</div>
-                                @endif
-                            </div>
-                        @empty
-                            <p class="text-sm font-semibold text-[#5097AB]">Aun no hay imagenes adicionales.</p>
-                        @endforelse
-                    </div>
-                </section>
-
                 <section id="comentarios" class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/70 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
                     <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                         <div>

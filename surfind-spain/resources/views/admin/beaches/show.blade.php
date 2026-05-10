@@ -7,7 +7,7 @@
         <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
                 <h1 class="text-2xl font-semibold text-[#002833] dark:text-white">{{ $beach->name }}</h1>
-                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Ficha editorial, estado publico y recursos visuales de la playa.</p>
+                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Ficha editorial, estado publico e imagen de portada de la playa.</p>
             </div>
 
             <div class="flex flex-wrap gap-2">
@@ -111,7 +111,7 @@
                     </dl>
                 </section>
 
-                <section class="grid grid-cols-3 gap-3">
+                <section class="grid grid-cols-2 gap-3">
                     <div class="rounded-2xl border border-zinc-300 bg-white p-4 text-center shadow-sm shadow-[#114857]/5 dark:border-zinc-700 dark:bg-zinc-900">
                         <div class="text-2xl font-semibold text-[#114857] dark:text-[#85C3D4]">{{ $beach->comments_count }}</div>
                         <div class="mt-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">Comentarios</div>
@@ -120,11 +120,6 @@
                     <div class="rounded-2xl border border-zinc-300 bg-white p-4 text-center shadow-sm shadow-[#114857]/5 dark:border-zinc-700 dark:bg-zinc-900">
                         <div class="text-2xl font-semibold text-[#114857] dark:text-[#85C3D4]">{{ $beach->favorited_by_users_count }}</div>
                         <div class="mt-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">Favoritos</div>
-                    </div>
-
-                    <div class="rounded-2xl border border-zinc-300 bg-white p-4 text-center shadow-sm shadow-[#114857]/5 dark:border-zinc-700 dark:bg-zinc-900">
-                        <div class="text-2xl font-semibold text-[#114857] dark:text-[#85C3D4]">{{ $beach->images_count }}</div>
-                        <div class="mt-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">Imagenes</div>
                     </div>
                 </section>
             </aside>
@@ -148,40 +143,6 @@
                             <span class="rounded-full bg-[#85C3D4]/15 px-3 py-1 text-xs font-semibold text-[#114857] dark:bg-[#85C3D4]/10 dark:text-[#85C3D4]">{{ $amenity->name }}</span>
                         @empty
                             <span class="text-sm text-zinc-500 dark:text-zinc-400">No hay servicios asociados.</span>
-                        @endforelse
-                    </div>
-                </section>
-
-                <section class="rounded-2xl border border-zinc-300 bg-white p-6 shadow-sm shadow-[#114857]/5 dark:border-zinc-700 dark:bg-zinc-900">
-                    <div class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-                        <div>
-                            <h2 class="text-base font-semibold text-[#002833] dark:text-white">Galeria</h2>
-                            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">La portada actual y portadas anteriores quedan disponibles para una futura galeria publica.</p>
-                        </div>
-                    </div>
-
-                    <div class="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                        @forelse ($beach->images as $image)
-                            @php
-                                $imageUrl = $image->url();
-                            @endphp
-
-                            <div class="overflow-hidden rounded-2xl border border-zinc-300 dark:border-zinc-700">
-                                @if ($imageUrl)
-                                    <img src="{{ $imageUrl }}" alt="{{ $image->alt_text ?? $beach->name }}" class="h-36 w-full object-cover">
-                                @else
-                                    <div class="grid h-36 place-items-center bg-zinc-100 text-sm text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">Sin imagen</div>
-                                @endif
-
-                                <div class="flex items-center justify-between gap-2 px-3 py-2 text-xs text-zinc-500 dark:text-zinc-400">
-                                    <span>{{ $image->source_type === 'upload' ? 'Subida' : 'URL externa' }}</span>
-                                    @if ($image->is_cover)
-                                        <span class="font-semibold text-[#114857] dark:text-[#85C3D4]">Portada</span>
-                                    @endif
-                                </div>
-                            </div>
-                        @empty
-                            <p class="text-sm text-zinc-500 dark:text-zinc-400">No hay imagenes asociadas.</p>
                         @endforelse
                     </div>
                 </section>

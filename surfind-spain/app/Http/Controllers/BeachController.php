@@ -82,11 +82,10 @@ class BeachController extends Controller
     {
         abort_unless($beach->status === 'published', 404);
 
-        $beach->load(['location', 'coverImage', 'amenities', 'images'])
+        $beach->load(['location', 'coverImage', 'amenities'])
             ->loadCount([
                 'comments as published_comments_count' => fn ($query) => $query->where('published', true),
                 'favoritedByUsers',
-                'images',
             ]);
 
         $comments = $beach->comments()
