@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BeachController as AdminBeachController;
+use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BeachController;
 use App\Http\Controllers\CommentController;
@@ -43,6 +44,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::patch('/{user}/restore', 'restore')->name('restore')->middleware('permission:manage users');
             Route::delete('/{user}/destroy', 'destroy')->name('destroy')->middleware('permission:manage users');
         });
+
+        Route::delete('comentarios/{comment}/destroy', [AdminCommentController::class, 'destroy'])
+            ->name('comments.destroy')
+            ->middleware('permission:delete any review');
     });
 });
 

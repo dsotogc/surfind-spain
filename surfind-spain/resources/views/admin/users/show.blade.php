@@ -123,8 +123,23 @@
                                     </p>
                                 </div>
 
-                                <div class="shrink-0 text-sm text-zinc-500 dark:text-zinc-400">
-                                    {{ $comment->created_at?->format('d/m/Y H:i') }}
+                                <div class="flex shrink-0 items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+                                    <span>{{ $comment->created_at?->format('d/m/Y H:i') }}</span>
+
+                                    @can('delete any review')
+                                        @if ($comment->published)
+                                            <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}" onsubmit="return confirm('El comentario dejara de mostrarse publicamente. ¿Quieres continuar?')">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" title="Ocultar comentario" aria-label="Ocultar comentario" class="inline-flex size-8 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-200 dark:text-red-400 dark:hover:bg-red-500/10 dark:hover:text-red-300">
+                                                    <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 7h12M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7m2 0-.7 12.25A2 2 0 0 1 14.3 21H9.7a2 2 0 0 1-2-1.75L7 7m3 4v6m4-6v6" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @endcan
                                 </div>
                             </div>
                         </article>
