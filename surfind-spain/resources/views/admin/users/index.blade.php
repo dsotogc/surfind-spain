@@ -100,7 +100,7 @@
                                             </a>
 
                                             @if (auth()->id() !== $user->id)
-                                                <form method="POST" action="{{ route('admin.users.destroy', $user) }}" onsubmit="return confirm('Esta cuenta quedara deshabilitada y no podra iniciar sesion. ¿Quieres continuar?')">
+                                                <form method="POST" action="{{ route('admin.users.destroy', $user) }}" onsubmit="return confirm('Esta cuenta quedará deshabilitada y no podrá iniciar sesión. ¿Quieres continuar?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" title="Deshabilitar" aria-label="Deshabilitar usuario" class="inline-flex size-8 items-center justify-center text-red-600 transition hover:text-red-700 dark:text-red-300 dark:hover:text-red-200">
