@@ -13,8 +13,7 @@
             <div class="relative grid gap-8 lg:grid-cols-[1fr_280px] lg:items-end">
                 <div class="max-w-3xl">
                     <p class="text-xs font-black uppercase tracking-[0.32em] text-[#85C3D4]">Comunidad</p>
-                    <h1 class="mt-4 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">Las playas más queridas</h1>
-                    <p class="mt-5 max-w-2xl text-base leading-7 text-[#DCEFF4] sm:text-lg">Las 5 playas que más surfistas han guardado en Surfind Spain, reunidas en un ranking sencillo para descubrir las favoritas sin perderse entre filtros.</p>
+                    <h1 class="mt-4 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">Las 5 playas que más surfistas han guardado en Surfind Spain</h1>
                 </div>
             </div>
         </div>
@@ -145,9 +144,7 @@
             </div>
         @else
             <div class="rounded-[2rem] border border-[#85C3D4]/45 bg-white/75 px-6 py-14 text-center shadow-xl shadow-[#114857]/5 backdrop-blur">
-                <h2 class="text-2xl font-black text-[#002833]">Todavia no hay playas en el ranking</h2>
-                <p class="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#266C80]">Cuando haya playas publicadas, la comunidad podra empezar a guardarlas y este podio cobrara vida.</p>
-                <a href="{{ route('beaches.index') }}" wire:navigate class="mt-6 inline-flex rounded-full bg-[#002833] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#114857]">Explorar playas</a>
+                <h2 class="text-2xl font-black text-[#002833]">Todavía no hay playas en el ranking</h2>
             </div>
         @endif
     </section>

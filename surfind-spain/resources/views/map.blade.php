@@ -3,7 +3,6 @@
         <div>
             <p class="text-sm font-bold uppercase tracking-[0.28em] text-[#5097AB]">Mapa interactivo</p>
             <h1 class="mt-2 text-4xl font-black tracking-tight text-[#002833] md:text-5xl">Explora playas de surf</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-6 text-[#266C80]">Muévete por la costa, abre cada marcador y salta a la ficha completa cuando una playa te interese.</p>
         </div>
 
         @if ($mapBeaches->isNotEmpty())
@@ -18,8 +17,7 @@
             <script type="application/json" data-surfind-map-data>{!! $mapBeaches->toJson(JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) !!}</script>
         @else
             <div class="rounded-[2.25rem] border border-[#85C3D4]/45 bg-white/75 px-6 py-16 text-center shadow-xl shadow-[#114857]/5 backdrop-blur">
-                <h2 class="text-2xl font-black text-[#002833]">Aun no hay playas publicadas en el mapa</h2>
-                <p class="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#266C80]">Cuando haya playas publicadas con coordenadas, apareceran aqui como marcadores interactivos.</p>
+                <h2 class="text-2xl font-black text-[#002833]">Aún no hay playas publicadas en el mapa</h2>
             </div>
         @endif
     </section>

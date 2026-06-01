@@ -3,7 +3,6 @@
         <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
                 <h1 class="text-2xl font-semibold text-[#002833] dark:text-white">Editar {{ $user->name }}</h1>
-                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Actualiza los datos de acceso y el rol principal de la cuenta.</p>
             </div>
 
             <div class="flex flex-wrap gap-2">
@@ -26,7 +25,6 @@
                     <section>
                         <div class="mb-5">
                             <h2 class="text-base font-semibold text-[#002833] dark:text-white">Datos principales</h2>
-                            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Nombre, correo y rol que determinan como aparece y que puede hacer el usuario.</p>
                         </div>
 
                         <div class="grid gap-6 lg:grid-cols-2">
@@ -68,7 +66,7 @@
                     <section class="border-t border-zinc-300 pt-8 dark:border-zinc-700">
                         <div class="mb-5">
                             <h2 class="text-base font-semibold text-[#002833] dark:text-white">Cambiar contraseña</h2>
-                            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Deja estos campos vacios si no quieres modificar la contraseña actual.</p>
+                            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Deja estos campos vacios si no quieres modificar la contraseña actual</p>
                         </div>
 
                         <div class="grid gap-6 lg:grid-cols-2">
@@ -130,11 +128,6 @@
                             <span class="font-medium text-zinc-900 dark:text-white">{{ $user->email_verified_at?->format('d/m/Y') ?? 'No' }}</span>
                         </div>
                     </div>
-                </section>
-
-                <section class="rounded-2xl border border-zinc-300 bg-[#85C3D4]/10 p-5 text-sm text-[#114857] dark:border-zinc-700 dark:bg-[#85C3D4]/10 dark:text-[#85C3D4]">
-                    <h2 class="font-semibold text-[#002833] dark:text-white">Rol unico</h2>
-                    <p class="mt-2 leading-6">Al guardar se reemplaza cualquier rol previo por el rol seleccionado. Esto mantiene clara la separacion entre usuario publico y administracion.</p>
                 </section>
             </aside>
         </div>

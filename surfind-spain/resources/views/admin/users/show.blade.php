@@ -8,7 +8,6 @@
                     </div>
                     <div>
                         <h1 class="text-2xl font-semibold text-[#002833] dark:text-white">{{ $user->name }}</h1>
-                        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Ficha administrativa y actividad reciente del usuario.</p>
                     </div>
                 </div>
             </div>
@@ -98,7 +97,6 @@
                     <div class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
                         <div>
                             <h2 class="text-base font-semibold text-[#002833] dark:text-white">Comentarios recientes</h2>
-                            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Actividad util para revisar el contexto de participacion del usuario.</p>
                         </div>
                     </div>
                 </div>
@@ -145,8 +143,7 @@
                         </article>
                     @empty
                         <div class="px-6 py-12 text-center">
-                            <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Este usuario aun no ha publicado comentarios.</p>
-                            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Cuando participe en playas, su actividad aparecera aqui.</p>
+                            <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Este usuario aún no ha publicado comentarios</p>
                         </div>
                     @endforelse
                 </div>
