@@ -3,7 +3,6 @@
         <header class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
                 <h1 class="text-3xl font-semibold tracking-tight text-[#002833] dark:text-white">Hola, {{ auth()->user()->name }}</h1>
-                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Dashboard administrativo de Surfind Spain</p>
             </div>
 
             <div class="text-sm sm:text-right">
@@ -40,7 +39,7 @@
             </article>
 
             <aside class="rounded-2xl border border-zinc-300 bg-white p-5 shadow-sm shadow-[#114857]/5 dark:border-zinc-700 dark:bg-zinc-900 sm:p-6">
-                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Acciones rapidas</h2>
+                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Acciones rápidas</h2>
 
                 <div class="mt-5 space-y-3">
                     @can('create beaches')

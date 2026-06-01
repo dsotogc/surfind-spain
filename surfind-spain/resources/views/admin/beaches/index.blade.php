@@ -3,7 +3,6 @@
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
                 <h1 class="text-2xl font-semibold text-[#002833] dark:text-white">Playas</h1>
-                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Gestiona playas, estados, ubicacion, portada y detalles publicos.</p>
             </div>
 
             @can('create beaches')
@@ -15,7 +14,7 @@
 
         <form method="GET" action="{{ route('admin.beaches.index') }}" class="w-full rounded-xl border border-zinc-300 bg-white p-4 shadow-sm shadow-[#114857]/5 dark:border-zinc-700 dark:bg-zinc-900">
             <div class="grid gap-4 xl:grid-cols-[1fr_220px_180px_180px_auto] xl:items-end">
-                <flux:input name="search" label="Buscar playa" placeholder="Nombre o descripcion" value="{{ $search }}" />
+                <flux:input name="search" label="Buscar playa" placeholder="Nombre o descripción" value="{{ $search }}" />
 
                 <flux:select name="location_id" label="Provincia">
                     <flux:select.option value="">Todas</flux:select.option>

@@ -16,7 +16,6 @@
         <section>
             <div class="mb-5">
                 <h2 class="text-base font-semibold text-[#002833] dark:text-white">Informacion principal</h2>
-                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Datos editoriales y publicos de la playa.</p>
             </div>
 
             <div>
@@ -46,11 +45,11 @@
             </div>
 
             <div class="mt-6">
-                <flux:input name="short_description" label="Descripcion corta" value="{{ old('short_description', $beach?->short_description) }}" type="text" maxlength="255" placeholder="Resumen breve para listados y tarjetas" />
+                <flux:input name="short_description" label="Descripción corta" value="{{ old('short_description', $beach?->short_description) }}" type="text" maxlength="255" placeholder="Resumen breve para listados y tarjetas" />
             </div>
 
             <div class="mt-6">
-                <label for="description" class="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-200">Descripcion</label>
+                <label for="description" class="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-200">Descripción</label>
                 <textarea id="description" name="description" rows="7" class="block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-xs outline-none transition placeholder:text-zinc-400 focus:border-[#266C80] focus:ring-2 focus:ring-[#85C3D4]/30 dark:border-zinc-700 dark:bg-zinc-950 dark:text-white dark:placeholder:text-zinc-500">{{ old('description', $beach?->description) }}</textarea>
             </div>
         </section>
@@ -58,7 +57,6 @@
         <section class="border-t border-zinc-300 pt-8 dark:border-zinc-700">
             <div class="mb-5">
                 <h2 class="text-base font-semibold text-[#002833] dark:text-white">Localizacion</h2>
-                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Coordenadas decimales para el futuro mapa interactivo.</p>
             </div>
 
             <div class="grid gap-6 lg:grid-cols-2">
@@ -70,7 +68,6 @@
         <section class="border-t border-zinc-300 pt-8 dark:border-zinc-700">
             <div class="mb-5">
                 <h2 class="text-base font-semibold text-[#002833] dark:text-white">Imagen de portada</h2>
-                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Puedes subir una imagen propia o usar una URL externa como portada de la playa.</p>
             </div>
 
             <div class="grid gap-6 lg:grid-cols-[260px_1fr]">
@@ -111,8 +108,7 @@
 
         <section class="border-t border-zinc-300 pt-8 dark:border-zinc-700">
             <div class="mb-5">
-                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Servicios y caracteristicas</h2>
-                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Selecciona los servicios disponibles para usar como filtros y detalles publicos.</p>
+                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Servicios</h2>
             </div>
 
             <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
@@ -122,7 +118,7 @@
                         <span class="font-medium text-zinc-800 dark:text-zinc-200">{{ $amenity->name }}</span>
                     </label>
                 @empty
-                    <p class="text-sm text-zinc-500 dark:text-zinc-400">No hay servicios creados todavia.</p>
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400">No hay servicios creados todavía</p>
                 @endforelse
             </div>
         </section>

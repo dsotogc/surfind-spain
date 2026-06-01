@@ -3,7 +3,6 @@
         <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
                 <h1 class="text-2xl font-semibold text-[#002833] dark:text-white">Editar {{ $beach->name }}</h1>
-                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Actualiza la informacion publica, servicios y portada de la playa.</p>
             </div>
 
             <div class="flex flex-wrap gap-2">

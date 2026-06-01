@@ -3,7 +3,6 @@
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
                 <h1 class="text-2xl font-semibold text-[#002833] dark:text-white">Usuarios</h1>
-                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Gestiona usuarios, roles y acceso a la aplicacion.</p>
             </div>
 
             @can('manage users')
@@ -125,12 +124,6 @@
                     </tbody>
                 </table>
             </div>
-
-            @if ($users->hasPages())
-                <div class="border-t border-zinc-200 px-4 py-3 dark:border-white/10">
-                    {{ $users->links() }}
-                </div>
-            @endif
         </div>
     </div>
 </x-layouts::app>
