@@ -56,7 +56,7 @@
                             <th class="w-[15%] px-4 py-3">Provincia</th>
                             <th class="w-[12%] px-4 py-3">Estado</th>
                             <th class="w-[12%] px-4 py-3">Dificultad</th>
-                            <th class="w-[13%] px-4 py-3">Publicacion</th>
+                            <th class="w-[13%] px-4 py-3">Publicación</th>
                             <th class="w-[10%] px-4 py-3">Actividad</th>
                             <th class="w-[8%] px-4 py-3">Acciones</th>
                         </tr>
@@ -124,7 +124,7 @@
 
                                         @can('delete beaches')
                                             @if ($beach->status !== 'archived')
-                                                <form method="POST" action="{{ route('admin.beaches.destroy', $beach) }}" onsubmit="return confirm('La playa pasara a estado archivada. ¿Quieres continuar?')">
+                                                <form method="POST" action="{{ route('admin.beaches.destroy', $beach) }}" onsubmit="return confirm('La playa pasará a estado archivada. ¿Quieres continuar?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" title="Archivar" aria-label="Archivar playa" class="inline-flex size-8 items-center justify-center text-red-600 transition hover:text-red-700 dark:text-red-300 dark:hover:text-red-200">

@@ -15,7 +15,7 @@
     <div class="space-y-8">
         <section>
             <div class="mb-5">
-                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Informacion principal</h2>
+                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Información principal</h2>
             </div>
 
             <div>
@@ -56,7 +56,7 @@
 
         <section class="border-t border-zinc-300 pt-8 dark:border-zinc-700">
             <div class="mb-5">
-                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Localizacion</h2>
+                <h2 class="text-base font-semibold text-[#002833] dark:text-white">Localización</h2>
             </div>
 
             <div class="grid gap-6 lg:grid-cols-2">
@@ -98,7 +98,7 @@
                     <div>
                         <label for="cover_image" class="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-200">Archivo</label>
                         <input id="cover_image" name="cover_image" type="file" accept="image/png,image/jpeg,image/webp" class="block w-full text-sm text-zinc-700 file:me-4 file:rounded-lg file:border-0 file:bg-[#114857] file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-[#266C80] dark:text-zinc-300">
-                        <p class="mt-2 text-xs text-zinc-500 dark:text-zinc-400">JPG, PNG o WEBP. Maximo 4MB.</p>
+                        <p class="mt-2 text-xs text-zinc-500 dark:text-zinc-400">JPG, PNG o WEBP. Máximo 4MB.</p>
                     </div>
 
                     <flux:input name="cover_image_url" label="URL externa" value="{{ old('cover_image_url', $currentExternalUrl) }}" type="url" maxlength="2048" placeholder="https://..." />

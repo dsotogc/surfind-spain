@@ -126,7 +126,7 @@
 
                                     @can('delete any review')
                                         @if ($comment->published)
-                                            <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}" onsubmit="return confirm('El comentario dejara de mostrarse publicamente. ¿Quieres continuar?')">
+                                            <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}" onsubmit="return confirm('El comentario dejará de mostrarse públicamente. ¿Quieres continuar?')">
                                                 @csrf
                                                 @method('DELETE')
 

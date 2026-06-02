@@ -76,8 +76,8 @@
         <div class="mt-8 grid gap-8 xl:grid-cols-[1fr_360px]">
             <div class="space-y-8">
                 <section class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/75 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
-                    <h2 class="text-2xl font-black text-[#002833]">Descripcion</h2>
-                    <p class="mt-5 whitespace-pre-line text-base leading-8 text-[#266C80]">{{ $beach->description ?: 'Esta playa aun no tiene una descripcion completa.' }}</p>
+                    <h2 class="text-2xl font-black text-[#002833]">Descripción</h2>
+                    <p class="mt-5 whitespace-pre-line text-base leading-8 text-[#266C80]">{{ $beach->description ?: 'Esta playa aún no tiene una descripción completa.' }}</p>
                 </section>
 
                 <section id="comentarios" class="rounded-[2rem] border border-[#85C3D4]/40 bg-white/70 p-6 shadow-xl shadow-[#114857]/5 backdrop-blur md:p-8">
@@ -97,7 +97,7 @@
                             @csrf
 
                             <label for="content" class="sr-only">Publicar comentario</label>
-                            <textarea id="content" name="content" rows="4" maxlength="1000" placeholder="Comparte algo util sobre esta playa..." class="block w-full resize-none rounded-[1.25rem] bg-white px-4 py-3 text-sm leading-6 text-[#002833] shadow-sm outline-none transition placeholder:text-[#5097AB]/70 focus:ring-4 focus:ring-[#85C3D4]/30">{{ old('content') }}</textarea>
+                            <textarea id="content" name="content" rows="4" maxlength="1000" placeholder="Comparte algo útil sobre esta playa..." class="block w-full resize-none rounded-[1.25rem] bg-white px-4 py-3 text-sm leading-6 text-[#002833] shadow-sm outline-none transition placeholder:text-[#5097AB]/70 focus:ring-4 focus:ring-[#85C3D4]/30">{{ old('content') }}</textarea>
 
                             @error('content')
                                 <p class="mt-2 text-sm font-semibold text-red-700">{{ $message }}</p>
@@ -109,7 +109,7 @@
                         </form>
                     @else
                         <div class="mt-6 rounded-[1.5rem] bg-[#DCEFF4]/45 p-4 text-sm font-semibold text-[#266C80]">
-                            <a href="{{ route('login') }}" class="font-black text-[#002833] transition hover:text-[#266C80]">Inicia sesion</a> para comentar esta playa.
+                            <a href="{{ route('login') }}" class="font-black text-[#002833] transition hover:text-[#266C80]">Inicia sesión</a> para comentar esta playa.
                         </div>
                     @endauth
 
@@ -130,7 +130,7 @@
                                 </div>
                             </article>
                         @empty
-                            <p class="rounded-[1.5rem] bg-white/70 p-5 text-sm font-semibold leading-6 text-[#266C80] shadow-sm shadow-[#114857]/5">Todavia no hay comentarios. Se la primera persona en compartir algo util sobre esta playa.</p>
+                            <p class="rounded-[1.5rem] bg-white/70 p-5 text-sm font-semibold leading-6 text-[#266C80] shadow-sm shadow-[#114857]/5">Todavía no hay comentarios. Sé la primera persona en compartir algo útil sobre esta playa.</p>
                         @endforelse
                     </div>
 
@@ -150,15 +150,15 @@
                         @forelse ($beach->amenities as $amenity)
                             <span class="rounded-full bg-[#85C3D4]/12 px-4 py-2 text-sm font-bold text-[#114857] shadow-sm">{{ $amenity->name }}</span>
                         @empty
-                            <span class="text-sm font-semibold text-[#5097AB]">Aun no hay servicios indicados.</span>
+                            <span class="text-sm font-semibold text-[#5097AB]">Aún no hay servicios indicados.</span>
                         @endforelse
                     </div>
                 </section>
 
                 <a href="{{ route('map', ['playa' => $beach->slug]) }}" class="block rounded-[2rem] bg-[#002833] p-6 text-white shadow-xl shadow-[#114857]/15 transition hover:-translate-y-0.5 hover:bg-[#114857]" wire:navigate>
                     <span class="text-sm font-bold uppercase tracking-[0.28em] text-[#85C3D4]">Mapa</span>
-                    <span class="mt-2 block text-xl font-black">Ver ubicacion</span>
-                    <span class="mt-3 block text-sm leading-6 text-white/75">Abre el mapa centrado en esta playa para ver su posicion en la costa.</span>
+                    <span class="mt-2 block text-xl font-black">Ver ubicación</span>
+                    <span class="mt-3 block text-sm leading-6 text-white/75">Abre el mapa centrado en esta playa para ver su posición en la costa.</span>
                 </a>
             </aside>
         </div>

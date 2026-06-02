@@ -4,7 +4,7 @@
             <div class="grid gap-4 xl:grid-cols-[1fr_220px_180px_180px_auto] xl:items-end">
                 <div>
                     <label for="search" class="mb-2 block text-sm font-semibold text-[#114857]">Buscar</label>
-                    <input id="search" name="search" value="{{ $search }}" placeholder="Nombre o descripcion" class="block w-full rounded-2xl bg-white px-4 py-3 text-sm text-[#002833] shadow-sm outline-none transition placeholder:text-[#5097AB]/70 focus:ring-4 focus:ring-[#85C3D4]/25">
+                    <input id="search" name="search" value="{{ $search }}" placeholder="Nombre o descripción" class="block w-full rounded-2xl bg-white px-4 py-3 text-sm text-[#002833] shadow-sm outline-none transition placeholder:text-[#5097AB]/70 focus:ring-4 focus:ring-[#85C3D4]/25">
                 </div>
 
                 <div>
@@ -31,8 +31,8 @@
                     <label for="sort" class="mb-2 block text-sm font-semibold text-[#114857]">Orden</label>
                     <select id="sort" name="sort" class="block w-full rounded-2xl bg-white px-4 py-3 text-sm text-[#002833] shadow-sm outline-none transition focus:ring-4 focus:ring-[#85C3D4]/25">
                         <option value="recent" @selected($sort === 'recent')>Recientes</option>
-                        <option value="comments" @selected($sort === 'comments')>Mas comentadas</option>
-                        <option value="favorites" @selected($sort === 'favorites')>Mas guardadas</option>
+                        <option value="comments" @selected($sort === 'comments')>Más comentadas</option>
+                        <option value="favorites" @selected($sort === 'favorites')>Más guardadas</option>
                         <option value="name" @selected($sort === 'name')>Nombre A-Z</option>
                     </select>
                 </div>
@@ -132,7 +132,7 @@
                                 @endauth
                             </div>
 
-                            <p class="mt-3 line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-[#266C80]">{{ $beach->short_description ?? 'Playa publicada en Surfind Spain pendiente de completar con mas detalles.' }}</p>
+                            <p class="mt-3 line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-[#266C80]">{{ $beach->short_description ?? 'Playa publicada en Surfind Spain pendiente de completar con más detalles.' }}</p>
 
                             <div class="mt-4 flex min-h-8 flex-wrap gap-2">
                                 @forelse ($visibleAmenities as $amenity)

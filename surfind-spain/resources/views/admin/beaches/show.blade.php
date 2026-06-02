@@ -33,7 +33,7 @@
                             <svg class="mx-auto size-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 17c3-4 6-4 9 0s6 4 9 0M4 13c2-2 4-2 6 0s4 2 6 0 3-2 4-1M8 7h.01M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2Z" />
                             </svg>
-                            <p class="mt-3 text-sm font-medium">Esta playa aun no tiene portada.</p>
+                            <p class="mt-3 text-sm font-medium">Esta playa aún no tiene portada.</p>
                         </div>
                     </div>
                 @endif
@@ -57,7 +57,7 @@
 
                     @can('delete beaches')
                         @if ($beach->status !== 'archived')
-                            <form method="POST" action="{{ route('admin.beaches.destroy', $beach) }}" onsubmit="return confirm('La playa pasara a estado archivada y dejara de mostrarse como publicada. ¿Quieres continuar?')">
+                            <form method="POST" action="{{ route('admin.beaches.destroy', $beach) }}" onsubmit="return confirm('La playa pasará a estado archivada y dejará de mostrarse como publicada. ¿Quieres continuar?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="inline-flex items-center gap-2 rounded-lg bg-white/90 px-4 py-2 text-sm font-semibold text-red-700 shadow-sm transition hover:bg-white hover:text-red-800">
@@ -99,7 +99,7 @@
                         </div>
 
                         <div>
-                            <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Publicacion</dt>
+                            <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Publicación</dt>
                             <dd class="mt-1 font-medium text-zinc-900 dark:text-white">{{ $beach->published_at?->format('d/m/Y H:i') ?? 'Sin publicar' }}</dd>
                         </div>
 
@@ -131,7 +131,7 @@
                         <p class="mt-4 text-sm font-medium text-zinc-900 dark:text-white">{{ $beach->short_description }}</p>
                     @endif
 
-                    <p class="mt-4 whitespace-pre-line text-sm leading-7 text-zinc-600 dark:text-zinc-300">{{ $beach->description ?: 'Esta playa aun no tiene descripcion completa.' }}</p>
+                    <p class="mt-4 whitespace-pre-line text-sm leading-7 text-zinc-600 dark:text-zinc-300">{{ $beach->description ?: 'Esta playa aún no tiene descripción completa.' }}</p>
                 </section>
 
                 <section class="rounded-2xl border border-zinc-300 bg-white p-6 shadow-sm shadow-[#114857]/5 dark:border-zinc-700 dark:bg-zinc-900">
