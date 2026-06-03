@@ -124,6 +124,12 @@
                     </tbody>
                 </table>
             </div>
+
+            @if ($users->hasPages())
+                <div class="border-t border-zinc-200 px-4 py-3 dark:border-white/10">
+                    {{ $users->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </x-layouts::app>
